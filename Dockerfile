@@ -22,9 +22,9 @@ FROM crops/yocto:$BASE_DISTRO-base
 
 USER root
 
-ADD https://raw.githubusercontent.com/crops/extsdk-container/master/restrict_useradd.sh  \
-        https://raw.githubusercontent.com/crops/extsdk-container/master/restrict_groupadd.sh \
-        https://raw.githubusercontent.com/crops/extsdk-container/master/usersetup.py \
+ADD restrict_useradd.sh  \
+        restrict_groupadd.sh \
+        usersetup.py \
         /usr/bin/
 COPY distro-entry.sh poky-entry.py poky-launch.sh /usr/bin/
 COPY sudoers.usersetup /etc/
