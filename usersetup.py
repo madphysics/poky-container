@@ -84,8 +84,11 @@ except KeyError:
     cmd = "sudo restrict_groupadd.sh {} {}".format(args.gid, args.username)
     subprocess.check_call(cmd.split(), stdout=sys.stdout, stderr=sys.stderr)
 
+# rename user if it already exists!
 try:
     pwd.getpwuid(args.uid)
+    cmd = "sudo usermod -l {} {}".format(args.username, pwd.getpwuid(args.uid).pw_name)
+    subprocess.check_call(cmd.split(), stdout=sys.stdout, stderr=sys.stderr)
 except KeyError:    
     cmd = "sudo restrict_useradd.sh {} {} {} {}".format(args.uid, args.gid,
                                                         args.username, args.skel)
